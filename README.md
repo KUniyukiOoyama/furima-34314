@@ -10,7 +10,7 @@
 | last_name             | string  | null: false               |
 | first_name_kana       | string  | null: false               |
 | last_name_kana        | string  | null: false               |
-| birthday_year_id      | date    | null: false               |
+| birthday              | date    | null: false               |
 ### Association
 - has_many :items
 - has_many :comments
@@ -33,7 +33,7 @@
 ### Association
 - belongs_to :user
 - has_many :comments
-- belongs_to :buyer
+- has_one :buyer
 
 
 ## comments テーブル
@@ -49,13 +49,12 @@
 ## buyers テーブル
 | Column     | Type       | Options                        |
 | -------    | ---------- | ------------------------------ |
-| price      | integer    | null: false                    |
 | user       | references | null: false, foreign_key: true |
 | item       | references | null: false, foreign_key: true |
 ### Association
 - belongs_to :user
 - belongs_to :item
-- belongs_to :address
+- has_one :address
 
 ## addresses テーブル
 | Column        | Type       | Options     |
@@ -63,6 +62,7 @@
 | city          | string     | null: false |
 | house_number  | string     | null: false |
 | building_name | string     |
+| post_number   | string     | null: false |
 | phone_number  | string     | null: false |
 ### Association
 - belongs_to :buyer
