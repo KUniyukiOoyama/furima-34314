@@ -14,7 +14,7 @@
 ### Association
 - has_many :items
 - has_many :comments
-- belongs_to :buyer
+- has_many :buyer
 
 
 
