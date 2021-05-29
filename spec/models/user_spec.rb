@@ -51,10 +51,12 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
       it '同じemailでは登録できない' do
-        @user.email = 'ksg-ooyama1988@yahoo.co.jp''ksg-ooyama1988@yahoo.co.jp'
+        user1 = FactoryBot.create(:user)
+        @user.email = user1.email
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include("Email has already been taken")
       end
+
       it 'emailに＠がないとでは登録できない' do
         @user.email = 'ksg-ooyama1988yahoo.co.jp'
         @user.valid?
@@ -118,6 +120,32 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is invalid")
       end
+
+
+      it 'first_nameが漢字・平仮名・カタカナ以外では登録できない' do
+        @user.first_name = 'aaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name is invalid")
+      end
+      it 'first_name_kanaが全角カタカナ以外では登録できない' do
+        @user.first_name_kana = 'aaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana is invalid")
+      end
+      it 'last_nameが漢字・平仮名・カタカナ以外では登録できない' do
+        @user.last_name = 'aaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name is invalid")
+      end
+      it 'last_name_kanaが全角カタカナ以外では登録できない' do
+        @user.last_name_kana = 'aaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana is invalid")
+      end
+
+
+
+
 
     end
   end
