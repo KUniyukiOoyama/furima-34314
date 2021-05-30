@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
 
   # メソッド名は慣習
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :nickname, :first_name, :first_name_kana, :last_name, :last_name_kana, :birthday])  # deviseのUserモデルにパラメーターを許可
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :first_name, :first_name_kana, :last_name, :last_name_kana, :birthday])  # deviseのUserモデルにパラメーターを許可
   end
 end
