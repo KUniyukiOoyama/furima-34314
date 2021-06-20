@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index,:show]
   before_action :set_item_params , only:[:show,:edit,:update,:destroy]
   before_action :user_check , only:[:edit,:destroy]
+  before_action :order_check, only:[:edit,:destroy]
   def index
     @items = Item.all.order(created_at: "DESC")
   end
@@ -53,5 +54,9 @@ class ItemsController < ApplicationController
   def user_check
     redirect_to root_path unless current_user == @item.user
   end
+  def order_check
+    redirect_to root_path if @item.order
+  end
+
 
 end
