@@ -9,6 +9,7 @@ FactoryBot.define do
     lead_time_id  {Faker::Number.between(from: 2, to: 4)}
     prefecture_id {Faker::Number.between(from: 2, to: 48)}
     user_id       { FactoryBot.create(:user).id }
+    association :user
 
     after(:build) do |item|
       item.image.attach(io: File.open('public/test1.jpg'), filename: 'test1.jpg', content_type: 'image/jpg')

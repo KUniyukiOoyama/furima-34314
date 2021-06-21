@@ -11,12 +11,8 @@ class OrderAddress
     validates :item_id
     validates :post_number, format: { with: /\A\d{3}[-]\d{4}\z/ } 
     validates :phone_number ,format: { with: /\A\d{9,11}\z/ }      
-    with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々a-z\d]+\z/i} do
-      validates :city
-      validates :house_number
-    end
-
-    
+    validates :city
+    validates :house_number
   end
 
 
