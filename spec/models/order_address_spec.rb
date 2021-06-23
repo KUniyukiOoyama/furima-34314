@@ -4,6 +4,8 @@ RSpec.describe OrderAddress, type: :model do
   describe '商品購入機能' do
     before do
       @order_address = FactoryBot.build(:order_address)
+      @order_address.user_id = FactoryBot.create(:user).id
+      @order_address.item_id = FactoryBot.create(:item).id
       sleep(1)
     end
 
@@ -63,7 +65,7 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number is invalid")
       end
-      it 'phone_numberが11桁以上の数値だと登録ができない' do
+      it 'phone_numberが12桁以上の数値だと登録ができない' do
         @order_address.phone_number = '090111111111'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number is invalid")
