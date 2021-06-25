@@ -12,7 +12,7 @@ function count(){
     const proFit = document.getElementById("profit");
     proFit.innerHTML =lastprice
 
-  })
-}
+  });
+};
 
-window.addEventListener('load', count)
+window.addEventListener('load', count);
